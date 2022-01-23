@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:search_image/data/pixabay_api.dart';
+import 'package:search_image/data/photo_provider.dart';
 import 'package:search_image/model/photo.dart';
 import 'package:search_image/ui/widget/photo_widget.dart';
 
@@ -11,10 +11,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final _api = PixabayApi();
+  // InheritedWidget을 통해 PhotoProvider로 api를 제공받는다.
+  // final _api = PixabayApi();
   final _controller = TextEditingController();
 
-  // 값을 받을 리스트
+  // 사진 데이터 받을 리스트
   List<Photo> _photos = [];
 
 
@@ -26,6 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final _photoProvider = PhotoProvider.of(context);
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -49,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   suffixIcon: IconButton(
                     icon: const Icon(Icons.search),
                     onPressed: () async {
-                      final photos = await _api.fetch(_controller.text);
+                      final photos = await _photoProvider.api.fetch(_controller.text);
 
                       // 화면이 다시 그려지게.
                       setState(() {

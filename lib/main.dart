@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:search_image/data/photo_provider.dart';
+import 'package:search_image/data/pixabay_api.dart';
 import 'package:search_image/ui/home_screen.dart';
 
 void main() {
@@ -16,7 +18,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      // Inherited Wiget으로 감싸준다.
+      home: PhotoProvider(
+        api: PixabayApi(),
+        child: const HomeScreen(),
+      ),
     );
   }
 }
