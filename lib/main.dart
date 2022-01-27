@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:search_image/data/photo_provider.dart';
 import 'package:search_image/data/pixabay_api.dart';
 import 'package:search_image/ui/home_screen.dart';
+import 'package:search_image/ui/home_view_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       // Inherited Wiget으로 감싸준다.
       home: PhotoProvider(
-        api: PixabayApi(),
+        viewModel: HomeViewModel(PixabayApi()),
         child: const HomeScreen(),
       ),
     );
