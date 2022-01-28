@@ -97,4 +97,19 @@ class Photo {
     _data['userImageURL'] = userImageURL;
     return _data;
   }
+
+  // collection 안에서 동일한 값을 비교하는 규칙을 재정의...
+  // Id가 같은면 같다고 본다.
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Photo && runtimeType == other.runtimeType && id == other.id;
+
+  @override
+  int get hashCode => id.hashCode;
+
+  @override
+  String toString() {
+    return 'Photo{id: $id}';
+  }
 }
