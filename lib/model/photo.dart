@@ -24,6 +24,5 @@ class Photo extends Equatable{
   Map<String, dynamic> toJson() => _$PhotoToJson(this);
 
   @override
-  // TODO: implement props
-  List<Object?> get props => [id];
+  List<Object?> get props => [id, tags, previewUrl, webformatUrl];
 }
